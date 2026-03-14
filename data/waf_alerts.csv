@@ -1,0 +1,5 @@
+Timestamp,Source_IP,Destination_IP,Threat_Type,Severity,Details
+2026-03-05 10:15:32,45.33.22.11,192.168.1.10,SQL Injection,High,"Payload: ' OR 1=1 --"
+2026-03-06 14:22:11,192.168.1.105,104.21.55.2,Data Exfiltration,Critical,"Outbound transfer: 45 GB"
+2026-03-06 18:45:00,192.168.1.50,192.168.1.10,SQL Injection,High,"Payload: UNION SELECT username, password"
+2026-03-07 09:12:05,10.0.0.5,192.168.1.20,Brute Force,Medium,"50 failed SSH login attempts"

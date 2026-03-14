@@ -1,0 +1,11 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	x509
+#open	2026-03-07-15-00-00
+#fields	ts	id	certificate.version	certificate.serial	certificate.subject	certificate.issuer	certificate.not_valid_before	certificate.not_valid_after	certificate.key_alg	certificate.sig_alg	certificate.key_type	certificate.key_length	certificate.exponent	certificate.curve	san.dns	san.uri	san.email	san.ip	basic_constraints.ca	basic_constraints.path_len
+#types	time	string	count	string	string	string	time	time	string	string	string	count	string	string	vector[string]	vector[string]	vector[string]	vector[addr]	bool	count
+1709823600.123456	Fki12345ABCD	3	1234567890	CN=HQ-VPN-Gateway,O=CORP,C=GR	CN=CORP-Root-CA,O=CORP,C=GR	1678198800.0	1772806800.0	rsaEncryption	sha256WithRSAEncryption	rsa	2048	65537	-	-	-	-	-	F	-
+1709823900.654321	Fki98765ZYXW	3	0987654321	CN=Branch-Router-Compromised,O=CORP,C=GR	CN=CORP-Root-CA,O=CORP,C=GR	1646662800.0	1709820000.0	rsaEncryption	sha256WithRSAEncryption	rsa	2048	65537	-	-	-	-	-	F	-
+#close	2026-03-07-15-30-00
