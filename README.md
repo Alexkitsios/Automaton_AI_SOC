@@ -9,6 +9,13 @@ Automaton is an advanced, AI-driven Security Orchestration, Automation, and Resp
 2. **AI Correlation Engine:** Utilizes OpenAI's GPT models to act as a Tier-3 Incident Responder, instantly analyzing logs, identifying attack vectors (e.g., MITRE ATT&CK), and generating concise Incident Reports.
 3. **Automated SOAR Execution:** Connects directly to network edge devices via SSH to dynamically enforce micro-segmentation (Targeted ACLs) or full interface isolation in real-time.
 
+## Architecture & Philosophy
+Automaton assumes breach. By leveraging Zero-Trust principles, the platform offers two distinct automated containment strategies depending on the severity of the incident:
+
+1. **Surgical Threat Isolation (Recommended):** Deploys dynamic micro-segmentation (ACLs) to instantly cut off specific compromised assets at the core/edge level. This ensures the threat is neutralized while maintaining full business continuity for uncompromised hosts.
+2. **Gateway Interface Shutdown (Last Resort):** Acts as the "nuclear option" for catastrophic, network-wide threats (e.g., rapid ransomware propagation). It administratively disables the physical edge interface via SSH, physically severing the network to prevent further lateral movement and data exfiltration.
+
+
 ![Automaton Launch Page](Automaton_launch_page.png)
 
 ---
@@ -56,11 +63,20 @@ Automaton uses the netmiko Python library to send SSH commands to network device
 You can easily adapt Automaton to work with your own lab or production network, regardless of the vendor.
 
 ### Modifying the Target Device
-Open `app.py` and locate the `cisco_device` dictionary inside the `execute_soar_action` function.
+1. Open `app.py` and locate the `cisco_device` dictionary inside the `execute_soar_action` function.
+2. Update the dictionary with your own device's SSH credentials and IP address so Automaton can connect to it:
 
-Update the IP address, credentials, and device type.
+```python
+cisco_device = {
+    'device_type': 'cisco_ios',  # e.g., 'cisco_ios', 'paloalto_panos', 'fortinet'
+    'host': '192.168.56.50',     # Your Gateway / Firewall IP Address
+    'username': 'admin',         # Your SSH Username
+    'password': 'YOUR_SSH_PASSWORD_HERE', # Your SSH Password
+    ...
+}
+```
 
-Automaton supports almost any vendor via Netmiko. Examples for the `device_type` field:
+Note: Automaton supports almost any vendor via Netmiko. Examples for the `device_type` field:
 
 - Cisco IOS: `'cisco_ios'`
 - Palo Alto PAN-OS: `'paloalto_panos'`
@@ -88,9 +104,3 @@ if action_type == 2:
         'iptables-save'
     ]
 ```
-
-## 🛡️ Architecture & Philosophy
-Automaton assumes breach. By leveraging Zero-Trust principles, the platform offers two distinct automated containment strategies depending on the severity of the incident:
-
-1. **Surgical Threat Isolation (Recommended):** Deploys dynamic micro-segmentation (ACLs) to instantly cut off specific compromised assets at the core/edge level. This ensures the threat is neutralized while maintaining full business continuity for uncompromised hosts.
-2. **Gateway Interface Shutdown (Last Resort):** Acts as the "nuclear option" for catastrophic, network-wide threats (e.g., rapid ransomware propagation). It administratively disables the physical edge interface via SSH, physically severing the network to prevent further lateral movement and data exfiltration.
