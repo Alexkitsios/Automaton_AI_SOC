@@ -265,6 +265,7 @@ if user_input := st.chat_input("E.g., 'Analyze the logs. Are there any threats o
     * **Target/Source:** [Extracted IP]
     * **Vulnerability:** [Details]
     * **MITRE ATT&CK:** [T-Code and Name]
+    * **CVE:** [Relevant CVE ID if applicable, else N/A]
     * **Severity:** [CRITICAL / HIGH]
     ---
 
