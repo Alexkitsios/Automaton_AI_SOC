@@ -259,6 +259,7 @@ if user_input := st.chat_input("E.g., 'Analyze the logs. Are there any threats o
     * **Target/Source:** [Extracted IP or Hostname]
     * **Vulnerability:** [e.g., Weak RC4 Cipher / Expired x509]
     * **MITRE ATT&CK:** [e.g., T1040 - Network Sniffing]
+    * **CVE:** [Relevant CVE ID if applicable, else N/A]
     * **Severity:** [CRITICAL / HIGH]
 
     ### 🔴 **ALERT 2: [Short Threat Name]**
